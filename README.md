@@ -3,6 +3,28 @@
 `dynctl` is a CLI tool to maintain and diagnose Dynamic Engine installations
 on Kubernetes.
 
+## Installation
+
+Download the `dynctl` binary for your platform from the
+[latest release](https://github.com/qlik-download/CTL-Dynamic-Engine/releases/latest),
+make it executable, and move it into a directory on your `PATH`.
+
+```bash
+# macOS (Apple Silicon) example — replace the asset name for your platform
+# (dynctl-darwin-amd64, dynctl-darwin-arm64, dynctl-linux-amd64, dynctl-windows-amd64.exe)
+curl -LO https://github.com/qlik-download/CTL-Dynamic-Engine/releases/latest/download/dynctl-darwin-arm64
+chmod +x dynctl-darwin-arm64
+sudo mv dynctl-darwin-arm64 /usr/local/bin/dynctl
+
+# Verify the installation
+dynctl --version
+```
+
+Each release also publishes a `SHA256SUMS` file to verify the downloaded
+binary's checksum.
+
+Once installed, keep `dynctl` up to date with `dynctl update` (see below).
+
 ## Commands
 
 ### `dynctl doctor`
