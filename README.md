@@ -6,12 +6,19 @@ on Kubernetes.
 ## Installation
 
 Download the `dynctl` binary for your platform from the
-[latest release](https://github.com/qlik-download/CTL-Dynamic-Engine/releases/latest),
-make it executable, and move it into a directory on your `PATH`.
+[latest release](https://github.com/qlik-download/CTL-Dynamic-Engine/releases/latest).
+Each release also publishes a `SHA256SUMS` file to verify the downloaded
+binary's checksum.
+
+### macOS
 
 ```bash
-# macOS (Apple Silicon) example — replace the asset name for your platform
-# (dynctl-darwin-amd64, dynctl-darwin-arm64, dynctl-linux-amd64, dynctl-windows-amd64.exe)
+# Intel (amd64)
+curl -LO https://github.com/qlik-download/CTL-Dynamic-Engine/releases/latest/download/dynctl-darwin-amd64
+chmod +x dynctl-darwin-amd64
+sudo mv dynctl-darwin-amd64 /usr/local/bin/dynctl
+
+# Apple Silicon (arm64)
 curl -LO https://github.com/qlik-download/CTL-Dynamic-Engine/releases/latest/download/dynctl-darwin-arm64
 chmod +x dynctl-darwin-arm64
 sudo mv dynctl-darwin-arm64 /usr/local/bin/dynctl
@@ -20,8 +27,35 @@ sudo mv dynctl-darwin-arm64 /usr/local/bin/dynctl
 dynctl --version
 ```
 
-Each release also publishes a `SHA256SUMS` file to verify the downloaded
-binary's checksum.
+macOS may block the unsigned binary on first run. If needed, allow it via
+**System Settings > Privacy & Security**, or run:
+
+```bash
+xattr -d com.apple.quarantine /usr/local/bin/dynctl
+```
+
+### Linux
+
+```bash
+curl -LO https://github.com/qlik-download/CTL-Dynamic-Engine/releases/latest/download/dynctl-linux-amd64
+chmod +x dynctl-linux-amd64
+sudo mv dynctl-linux-amd64 /usr/local/bin/dynctl
+
+# Verify the installation
+dynctl --version
+```
+
+### Windows
+
+```powershell
+Invoke-WebRequest -Uri https://github.com/qlik-download/CTL-Dynamic-Engine/releases/latest/download/dynctl-windows-amd64.exe -OutFile dynctl.exe
+
+# Move dynctl.exe to a directory on your PATH, e.g.:
+Move-Item .\dynctl.exe "$env:USERPROFILE\bin\dynctl.exe"
+
+# Verify the installation
+dynctl --version
+```
 
 Once installed, keep `dynctl` up to date with `dynctl update` (see below).
 
