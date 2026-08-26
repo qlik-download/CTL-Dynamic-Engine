@@ -3,10 +3,6 @@
 `dynctl` is a CLI tool to maintain and diagnose Dynamic Engine installations
 on Kubernetes.
 
-This repository is used to distribute `dynctl` releases. For the full
-documentation, see the
-[Dynamic Engine configuration guide](https://help.qlik.com/talend/en-US/dynamic-engine-configuration-guide/Cloud/using-dynctl).
-
 ## Commands
 
 ### `dynctl doctor`
