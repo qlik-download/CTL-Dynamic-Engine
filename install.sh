@@ -4,6 +4,9 @@
 # Usage:
 #   curl -fsSL https://raw.githubusercontent.com/qlik-download/CTL-Dynamic-Engine/main/install.sh | sh
 #
+#   # to pin a release, fetch the installer from that same tag:
+#   curl -fsSL https://raw.githubusercontent.com/qlik-download/CTL-Dynamic-Engine/v1.2.3/install.sh | DYNCTL_VERSION=v1.2.3 sh
+#
 # Env vars:
 #   DYNCTL_VERSION  release tag to install, e.g. v1.2.3 (default: latest)
 #   INSTALL_DIR     directory to install into (default: /usr/local/bin)

@@ -16,13 +16,21 @@ curl -fsSL https://raw.githubusercontent.com/qlik-download/CTL-Dynamic-Engine/ma
 
 Detects your OS/arch, downloads the matching release, verifies it against
 `SHA256SUMS`, and installs it to `/usr/local/bin` (using `sudo` only if
-needed). Override the version or install location with env vars:
+needed). Override the install location with an env var:
 
 ```bash
-curl -fsSL https://raw.githubusercontent.com/qlik-download/CTL-Dynamic-Engine/main/install.sh | DYNCTL_VERSION=v1.2.3 INSTALL_DIR="$HOME/.local/bin" sh
+curl -fsSL https://raw.githubusercontent.com/qlik-download/CTL-Dynamic-Engine/main/install.sh | INSTALL_DIR="$HOME/.local/bin" sh
 ```
 
-Prefer to inspect the script before running it? `curl -fsSL <url> | less`,
+To pin a specific release, fetch the installer from that same tag so its
+logic matches the version being installed:
+
+```bash
+curl -fsSL https://raw.githubusercontent.com/qlik-download/CTL-Dynamic-Engine/v1.2.3/install.sh | DYNCTL_VERSION=v1.2.3 sh
+```
+
+Prefer to inspect the script before running it?
+`curl -fsSL https://raw.githubusercontent.com/qlik-download/CTL-Dynamic-Engine/main/install.sh | less`,
 or download it and run `sh install.sh` yourself.
 
 ### Windows
