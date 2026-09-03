@@ -11,16 +11,6 @@ fetch always match the release you're installing.
 
 ### macOS and Linux
 
-To pin a specific release, fetch the installer from that release's own
-assets so its logic matches the version being installed:
-
-```bash
-curl -fsSL https://github.com/qlik-download/CTL-Dynamic-Engine/releases/download/v1.2.3/install.sh | DYNCTL_VERSION=v1.2.3 sh
-```
-
-To always install the latest release instead, point at `latest` in both
-places:
-
 ```bash
 curl -fsSL https://github.com/qlik-download/CTL-Dynamic-Engine/releases/latest/download/install.sh | sh
 ```
