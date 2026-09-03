@@ -10,8 +10,6 @@ binary's checksum.
 
 ### macOS and Linux
 
-#### Quick install
-
 ```bash
 curl -fsSL https://raw.githubusercontent.com/qlik-download/CTL-Dynamic-Engine/main/install.sh | sh
 ```
@@ -26,43 +24,6 @@ DYNCTL_VERSION=v1.2.3 INSTALL_DIR="$HOME/.local/bin" curl -fsSL https://raw.gith
 
 Prefer to inspect the script before running it? `curl -fsSL <url> | less`,
 or download it and run `sh install.sh` yourself.
-
-#### Manual install
-
-##### macOS
-
-```bash
-# Intel (amd64)
-curl -LO https://github.com/qlik-download/CTL-Dynamic-Engine/releases/latest/download/dynctl-darwin-amd64
-chmod +x dynctl-darwin-amd64
-sudo mv dynctl-darwin-amd64 /usr/local/bin/dynctl
-
-# Apple Silicon (arm64)
-curl -LO https://github.com/qlik-download/CTL-Dynamic-Engine/releases/latest/download/dynctl-darwin-arm64
-chmod +x dynctl-darwin-arm64
-sudo mv dynctl-darwin-arm64 /usr/local/bin/dynctl
-
-# Verify the installation
-dynctl --version
-```
-
-macOS may block the unsigned binary on first run. If needed, allow it via
-**System Settings > Privacy & Security**, or run:
-
-```bash
-xattr -d com.apple.quarantine /usr/local/bin/dynctl
-```
-
-##### Linux
-
-```bash
-curl -LO https://github.com/qlik-download/CTL-Dynamic-Engine/releases/latest/download/dynctl-linux-amd64
-chmod +x dynctl-linux-amd64
-sudo mv dynctl-linux-amd64 /usr/local/bin/dynctl
-
-# Verify the installation
-dynctl --version
-```
 
 ### Windows
 
