@@ -5,12 +5,31 @@ on Kubernetes.
 
 ## Installation
 
-Download the `dynctl` binary for your platform from the
-[latest release](https://github.com/qlik-download/CTL-Dynamic-Engine/releases/latest).
 Each release also publishes a `SHA256SUMS` file to verify the downloaded
 binary's checksum.
 
-### macOS
+### macOS and Linux
+
+#### Quick install
+
+```bash
+curl -fsSL https://raw.githubusercontent.com/qlik-download/CTL-Dynamic-Engine/main/install.sh | sh
+```
+
+Detects your OS/arch, downloads the matching release, verifies it against
+`SHA256SUMS`, and installs it to `/usr/local/bin` (using `sudo` only if
+needed). Override the version or install location with env vars:
+
+```bash
+DYNCTL_VERSION=v1.2.3 INSTALL_DIR="$HOME/.local/bin" curl -fsSL https://raw.githubusercontent.com/qlik-download/CTL-Dynamic-Engine/main/install.sh | sh
+```
+
+Prefer to inspect the script before running it? `curl -fsSL <url> | less`,
+or download it and run `sh install.sh` yourself.
+
+#### Manual install
+
+##### macOS
 
 ```bash
 # Intel (amd64)
@@ -34,7 +53,7 @@ macOS may block the unsigned binary on first run. If needed, allow it via
 xattr -d com.apple.quarantine /usr/local/bin/dynctl
 ```
 
-### Linux
+##### Linux
 
 ```bash
 curl -LO https://github.com/qlik-download/CTL-Dynamic-Engine/releases/latest/download/dynctl-linux-amd64
