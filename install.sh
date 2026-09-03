@@ -52,7 +52,7 @@ fi
 binary_url="${download_base}/${asset}"
 checksums_url="${download_base}/SHA256SUMS"
 
-tmpdir=$(mktemp -d) || die "mktemp failed"
+tmpdir=$(mktemp -d "${TMPDIR:-/tmp}/dynctl-install.XXXXXXXX") || die "mktemp failed"
 trap 'rm -rf "$tmpdir"' EXIT INT TERM
 
 fetch "$binary_url" "$tmpdir/$asset"
@@ -88,11 +88,12 @@ if [ ! -d "$install_dir" ]; then
   fi
 fi
 
-if command -v dynctl >/dev/null 2>&1; then
-  old_version=$(dynctl --version 2>/dev/null || echo "unknown")
-  echo "Existing dynctl found ($old_version) -- it will be replaced."
+if [ -e "$target" ]; then
+  old_version=$("$target" --version 2>/dev/null || echo "unknown")
+  echo "Existing dynctl found ($old_version) at $target -- it will be replaced."
 fi
 
+used_sudo=0
 if [ -w "$install_dir" ]; then
   mv "$tmpdir/$asset" "$target"
   chmod +x "$target"
@@ -100,12 +101,17 @@ elif command -v sudo >/dev/null 2>&1; then
   echo "Elevated permissions required to write to $install_dir" >&2
   sudo mv "$tmpdir/$asset" "$target" || die "sudo mv failed"
   sudo chmod +x "$target" || die "sudo chmod failed"
+  used_sudo=1
 else
   die "$install_dir is not writable and sudo is not available. Re-run as a user with write access, or set INSTALL_DIR to a writable directory."
 fi
 
 if [ "$os" = "darwin" ]; then
-  xattr -d com.apple.quarantine "$target" 2>/dev/null || true
+  if [ "$used_sudo" = "1" ]; then
+    sudo xattr -d com.apple.quarantine "$target" 2>/dev/null || true
+  else
+    xattr -d com.apple.quarantine "$target" 2>/dev/null || true
+  fi
 fi
 
 case ":$PATH:" in

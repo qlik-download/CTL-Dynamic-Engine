@@ -19,7 +19,7 @@ Detects your OS/arch, downloads the matching release, verifies it against
 needed). Override the version or install location with env vars:
 
 ```bash
-DYNCTL_VERSION=v1.2.3 INSTALL_DIR="$HOME/.local/bin" curl -fsSL https://raw.githubusercontent.com/qlik-download/CTL-Dynamic-Engine/main/install.sh | sh
+curl -fsSL https://raw.githubusercontent.com/qlik-download/CTL-Dynamic-Engine/main/install.sh | DYNCTL_VERSION=v1.2.3 INSTALL_DIR="$HOME/.local/bin" sh
 ```
 
 Prefer to inspect the script before running it? `curl -fsSL <url> | less`,
