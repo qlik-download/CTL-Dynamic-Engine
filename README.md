@@ -5,32 +5,34 @@ on Kubernetes.
 
 ## Installation
 
-Each release also publishes a `SHA256SUMS` file to verify the downloaded
-binary's checksum.
+Each release publishes `SHA256SUMS` and the `install.sh` script itself
+alongside the platform binaries, so the installer and checksum file you
+fetch always match the release you're installing.
 
 ### macOS and Linux
 
+To pin a specific release, fetch the installer from that release's own
+assets so its logic matches the version being installed:
+
 ```bash
-curl -fsSL https://raw.githubusercontent.com/qlik-download/CTL-Dynamic-Engine/main/install.sh | sh
+curl -fsSL https://github.com/qlik-download/CTL-Dynamic-Engine/releases/download/v1.2.3/install.sh | DYNCTL_VERSION=v1.2.3 sh
 ```
 
-Detects your OS/arch, downloads the matching release, verifies it against
-`SHA256SUMS`, and installs it to `/usr/local/bin` (using `sudo` only if
-needed). Override the install location with an env var:
+To always install the latest release instead, point at `latest` in both
+places:
 
 ```bash
-curl -fsSL https://raw.githubusercontent.com/qlik-download/CTL-Dynamic-Engine/main/install.sh | INSTALL_DIR="$HOME/.local/bin" sh
+curl -fsSL https://github.com/qlik-download/CTL-Dynamic-Engine/releases/latest/download/install.sh | sh
 ```
 
-To pin a specific release, fetch the installer from that same tag so its
-logic matches the version being installed:
+Override the install location with `INSTALL_DIR`:
 
 ```bash
-curl -fsSL https://raw.githubusercontent.com/qlik-download/CTL-Dynamic-Engine/v1.2.3/install.sh | DYNCTL_VERSION=v1.2.3 sh
+curl -fsSL https://github.com/qlik-download/CTL-Dynamic-Engine/releases/latest/download/install.sh | INSTALL_DIR="$HOME/.local/bin" sh
 ```
 
 Prefer to inspect the script before running it?
-`curl -fsSL https://raw.githubusercontent.com/qlik-download/CTL-Dynamic-Engine/main/install.sh | less`,
+`curl -fsSL https://github.com/qlik-download/CTL-Dynamic-Engine/releases/latest/download/install.sh | less`,
 or download it and run `sh install.sh` yourself.
 
 ### Windows
