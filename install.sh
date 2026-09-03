@@ -2,7 +2,7 @@
 # Installs the dynctl CLI for macOS/Linux.
 #
 # Usage:
-#   curl -fsSL https://github.com/qlik-download/CTL-Dynamic-Engine/releases/latest/download/install.sh | sh
+#   curl -fsSL https://raw.githubusercontent.com/qlik-download/CTL-Dynamic-Engine/main/install.sh | sh
 #
 # Env vars:
 #   DYNCTL_VERSION  release tag to install, e.g. v1.2.3 (default: latest)

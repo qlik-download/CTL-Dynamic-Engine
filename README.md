@@ -5,24 +5,23 @@ on Kubernetes.
 
 ## Installation
 
-Each release publishes `SHA256SUMS` and the `install.sh` script itself
-alongside the platform binaries, so the installer and checksum file you
-fetch always match the release you're installing.
+Each release also publishes a `SHA256SUMS` file to verify the downloaded
+binary's checksum.
 
 ### macOS and Linux
 
 ```bash
-curl -fsSL https://github.com/qlik-download/CTL-Dynamic-Engine/releases/latest/download/install.sh | sh
+curl -fsSL https://raw.githubusercontent.com/qlik-download/CTL-Dynamic-Engine/main/install.sh | sh
 ```
 
 Override the install location with `INSTALL_DIR`:
 
 ```bash
-curl -fsSL https://github.com/qlik-download/CTL-Dynamic-Engine/releases/latest/download/install.sh | INSTALL_DIR="$HOME/.local/bin" sh
+curl -fsSL https://raw.githubusercontent.com/qlik-download/CTL-Dynamic-Engine/main/install.sh | INSTALL_DIR="$HOME/.local/bin" sh
 ```
 
 Prefer to inspect the script before running it?
-`curl -fsSL https://github.com/qlik-download/CTL-Dynamic-Engine/releases/latest/download/install.sh | less`,
+`curl -fsSL https://raw.githubusercontent.com/qlik-download/CTL-Dynamic-Engine/main/install.sh | less`,
 or download it and run `sh install.sh` yourself.
 
 ### Windows
