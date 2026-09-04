@@ -5,45 +5,24 @@ on Kubernetes.
 
 ## Installation
 
-Download the `dynctl` binary for your platform from the
-[latest release](https://github.com/qlik-download/CTL-Dynamic-Engine/releases/latest).
 Each release also publishes a `SHA256SUMS` file to verify the downloaded
 binary's checksum.
 
-### macOS
+### macOS and Linux
 
 ```bash
-# Intel (amd64)
-curl -LO https://github.com/qlik-download/CTL-Dynamic-Engine/releases/latest/download/dynctl-darwin-amd64
-chmod +x dynctl-darwin-amd64
-sudo mv dynctl-darwin-amd64 /usr/local/bin/dynctl
-
-# Apple Silicon (arm64)
-curl -LO https://github.com/qlik-download/CTL-Dynamic-Engine/releases/latest/download/dynctl-darwin-arm64
-chmod +x dynctl-darwin-arm64
-sudo mv dynctl-darwin-arm64 /usr/local/bin/dynctl
-
-# Verify the installation
-dynctl --version
+curl -fsSL https://raw.githubusercontent.com/qlik-download/CTL-Dynamic-Engine/main/install.sh | sh
 ```
 
-macOS may block the unsigned binary on first run. If needed, allow it via
-**System Settings > Privacy & Security**, or run:
+Override the install location with `INSTALL_DIR`:
 
 ```bash
-xattr -d com.apple.quarantine /usr/local/bin/dynctl
+curl -fsSL https://raw.githubusercontent.com/qlik-download/CTL-Dynamic-Engine/main/install.sh | INSTALL_DIR="$HOME/.local/bin" sh
 ```
 
-### Linux
-
-```bash
-curl -LO https://github.com/qlik-download/CTL-Dynamic-Engine/releases/latest/download/dynctl-linux-amd64
-chmod +x dynctl-linux-amd64
-sudo mv dynctl-linux-amd64 /usr/local/bin/dynctl
-
-# Verify the installation
-dynctl --version
-```
+Prefer to inspect the script before running it?
+`curl -fsSL https://raw.githubusercontent.com/qlik-download/CTL-Dynamic-Engine/main/install.sh | less`,
+or download it and run `sh install.sh` yourself.
 
 ### Windows
 
